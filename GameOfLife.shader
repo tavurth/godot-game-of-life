@@ -45,19 +45,23 @@ vec4 getColor(vec4 cc, int count) {
  */
 int ca_count(in sampler2D tex, vec2 uv, vec2 pixel_size) {
   vec2 s = pixel_size;
-  
-  float tl = texture(tex, uv + vec2(-s.x, -s.y)).x; // Top Left
-  float cl = texture(tex, uv + vec2(-s.x, 0)).x; // Centre Left
-  float bl = texture(tex, uv + vec2(-s.x, +s.y)).x; // Bottom Left
- 
-  float tc = texture(tex, uv + vec2(0, -s.y)).x; // Top Centre
-  float bc = texture(tex, uv + vec2(0, +s.y)).x; // Bottom Centre
- 
-  float tr = texture(tex, uv + vec2(+s.x, -s.y)).x; // Top Right
-  float cr = texture(tex, uv + vec2(+s.x, 0)).x; // Centre Right
-  float br = texture(tex, uv + vec2(+s.x, +s.y)).x; // Bottom Right
 
-  return int(tl + cl + bl + tc + bc + tr + cr + br);
+  float modifier;
+  float neighbours = 0.;
+  
+  for (float x = -1.; x < 2.; x++) {
+    for (float y = -1.; y < 2.; y++) {
+
+      // We don't want to add our current square
+      // modifier will equal zero only when we have x=0 & y=0
+      modifier = min(1., abs(x) + abs(y));
+
+      // Add any neighbours x value (we could also use y or z)
+      neighbours += texture(tex, uv + vec2(x, y) * pixel_size).x * modifier;
+    }
+  }
+
+  return int(neighbours);
 }
 
 void fragment() {
