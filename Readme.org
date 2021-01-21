@@ -1,0 +1,13 @@
+#+TITLE: Game of life with shaders
+
+I found it difficult to track down a simple GPU version of the Game of Life in Godot so I built one as part of a step in another project.
+
+This project uses only shaders to calculate the previous & next steps for the cellular automata. GDscript is used here only to input mouse coordinates & button presses for drawing.
+
+** Development notes
+
+It's important to set the ~viewport -> Render Target~ to have it's clear mode set to ~Next Frame~, in that way we will keep the contents of the FBO for the next frame, which will use those points to render the next step.
+
+I guess this method could also be used in compute shaders.
+
+If you would like to try out different rules, you can check the [[./GameOfLife.shader][GameOfLife.shader]] file, (~vec4 getColor~)
