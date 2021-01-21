@@ -36,10 +36,8 @@ size_flags_vertical = 3
 stretch = true
 
 [node name="Viewport" type="Viewport" parent="VBoxContainer/ViewportContainer"]
-size = Vector2( 1024, 512 )
-handle_input_locally = false
+size = Vector2( 1024, 600 )
 render_target_clear_mode = 2
-render_target_update_mode = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="VBoxContainer/ViewportContainer/Viewport"]
 
