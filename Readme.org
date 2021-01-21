@@ -2,7 +2,7 @@
 
 [[./screenshot.png]]
 
-[[https://tavurth.itch.io/godot-gpu-game-of-life][Web Demo]] ←←←←
+* [[https://tavurth.itch.io/godot-gpu-game-of-life][Web Demo]] ←←←←
 
 * Background
 
