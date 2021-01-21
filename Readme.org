@@ -1,5 +1,7 @@
 #+TITLE: Game of life with shaders
 
+[[./screenshot.png]]
+
 I found it difficult to track down a simple GPU version of the Game of Life in Godot so I built one as part of a step in another project.
 
 This project uses only shaders to calculate the previous & next steps for the cellular automata. GDscript is used here only to input mouse coordinates & button presses for drawing.
