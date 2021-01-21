@@ -19,6 +19,10 @@ config/name="GameOfLife"
 run/main_scene="res://GameOfLife.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [rendering]
 
 environment/default_clear_color=Color( 0, 0, 0, 1 )
