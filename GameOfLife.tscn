@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://GameOfLife.shader" type="Shader" id=1]
 [ext_resource path="res://InputArea.gd" type="Script" id=2]
@@ -8,9 +8,6 @@ shader = ExtResource( 1 )
 shader_param/mouse_pressed = false
 shader_param/mouse_position = Vector2( 0, 0 )
 
-[sub_resource type="ViewportTexture" id=2]
-viewport_path = NodePath("VBoxContainer/ViewportContainer/Viewport")
-
 [node name="GameOfLife" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,48 +15,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="ViewportContainer" type="ViewportContainer" parent="VBoxContainer"]
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
 
-[node name="Viewport" type="Viewport" parent="VBoxContainer/ViewportContainer"]
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
 size = Vector2( 1024, 600 )
 handle_input_locally = false
 render_target_clear_mode = 2
 render_target_update_mode = 3
 
-[node name="CanvasLayer" type="CanvasLayer" parent="VBoxContainer/ViewportContainer/Viewport"]
-
-[node name="InputArea" type="ColorRect" parent="VBoxContainer/ViewportContainer/Viewport/CanvasLayer"]
+[node name="InputArea" type="ColorRect" parent="ViewportContainer/Viewport"]
 material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = SubResource( 2 )
-__meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
