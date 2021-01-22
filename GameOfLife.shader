@@ -85,7 +85,7 @@ void fragment() {
     // Apply some random spread to the mouse circle
     // gives us a nicer starting draw cycle
     float col = rand(distance_to_mouse * uv);
-    COLOR = vec4(col, col, col, UV.y > 0.5 ? 1.0 : 0.0);
+    COLOR = vec4(col, col, col, 1.0);
   }
 
   else

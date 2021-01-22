@@ -34,4 +34,5 @@ This was bugging me for a long time as I had many weird rendering errors. My pro
 
 ** Caveats
 
-Looks like the double Viewport method doesn't work well with HTML exports.
+- Looks like the sprite + Viewport method doesn't work well with HTML exports.
+- I had to use a ~TextureRect~ with a white background, and then set the texture used in the shader to ~SCREEN_TEXTURE~ to fix it.
