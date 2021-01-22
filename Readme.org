@@ -17,3 +17,17 @@ It's important to set the ~viewport -> Render Target~ to have it's clear mode se
 I guess this method could also be used in compute shaders.
 
 If you would like to try out different rules, you can check the [[./GameOfLife.shader][GameOfLife.shader]] file, (~vec4 getColor~)
+
+** How it works
+
+|-------------+--------+--------------------------------------------------------|
+| Viewport    |        |                                                        |
+| \-------->  | Sprite | The sprite has it's texture set to the parent viewport |
+|             |        |                                                        |
+| TextureRect |        | The Texture is set to that of the viewport             |
+
+This means we can then render the ~Viewport~ independantly from the ~TextureRect~. We can also apply transformations to the ~TextureRect~ using a [[./jazzy.shader][separate shader]].
+
+** On the use of sprites
+
+This was bugging me for a long time as I had many weird rendering errors. My problem? I was using a ~TextureRect~ instead of a ~Sprite~. Stick a sprite as a direct child of the viewport & set the scale to ~Vector2(2, 2)~, everything working after that.
