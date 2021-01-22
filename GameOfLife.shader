@@ -17,23 +17,26 @@ highp float rand(vec2 co)
   return fract(sin(sn) * c);
 }
 
+float getCellContent(vec4 cc) {
+  return max(cc.r, max(cc.g, cc.b)) > 0. ? 1.0 : 0.0;
+}
+
 /**
  * Given the current cells color
  * and the surrounding cell colors
  * give me the next color for my current cell
  */
-vec4 getColor(vec4 cc, int count) {
-
+vec4 getColor(vec4 cc, int count, float time) {
   // When cell is alive & has either 2 or 3 neighbours
   // it will survive until the next iteration
-  if (cc.r > 0. && (count == 2 || count == 3)) {
-    return vec4(1.0, 1.0, 1.0, 1.0);
+  if (getCellContent(cc) > 0. && (count == 2 || count == 3)) {
+    return cc;
   }
 
   // If the cell is dead but has 3 neighbours
   // it will spring into life
   else if (count == 3) {
-    return vec4(1.0, 1.0, 1.0, 1.0);
+    return vec4(sin(time), cos(time), 1.0, 1.0);
   }
 
   // For all other cases the cells are dead
@@ -57,7 +60,7 @@ int ca_count(in sampler2D tex, vec2 uv, vec2 pixel_size) {
       modifier = min(1., abs(x) + abs(y));
 
       // Add any neighbours x value (we could also use y or z)
-      neighbours += texture(tex, uv + vec2(x, y) * pixel_size).r * modifier;
+      neighbours += getCellContent(texture(tex, uv + vec2(x, y) * pixel_size)) * modifier;
     }
   }
 
@@ -87,5 +90,5 @@ void fragment() {
 
   else
     // The meat of Game of Life is found here
-    COLOR = getColor(texture(TEXTURE, uv), count);
+    COLOR = getColor(texture(TEXTURE, uv), count, TIME);
 }
