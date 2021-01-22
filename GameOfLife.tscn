@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GameOfLife.shader" type="Shader" id=1]
 [ext_resource path="res://InputArea.gd" type="Script" id=2]
 [ext_resource path="res://FPS.gd" type="Script" id=3]
-[ext_resource path="res://jazzy.tres" type="Material" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
@@ -13,11 +12,8 @@ shader_param/mouse_position = Vector2( 0, 0 )
 [sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("GameOfLife")
 
-[sub_resource type="ViewportTexture" id=3]
-viewport_path = NodePath("GameOfLife")
-
 [sub_resource type="ViewportTexture" id=4]
-viewport_path = NodePath("JazzEffect")
+viewport_path = NodePath("GameOfLife")
 
 [node name="GameOfLife" type="Control"]
 anchor_right = 1.0
@@ -36,17 +32,6 @@ render_target_update_mode = 3
 material = SubResource( 1 )
 scale = Vector2( 2, 2 )
 texture = SubResource( 2 )
-
-[node name="JazzEffect" type="Viewport" parent="."]
-size = Vector2( 1024, 600 )
-usage = 0
-render_target_clear_mode = 2
-render_target_update_mode = 3
-
-[node name="Renderer" type="Sprite" parent="JazzEffect"]
-material = ExtResource( 4 )
-scale = Vector2( 2, 2 )
-texture = SubResource( 3 )
 
 [node name="FinalDisplay" type="TextureRect" parent="."]
 anchor_right = 1.0

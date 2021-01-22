@@ -26,10 +26,12 @@ If you would like to try out different rules, you can check the [[./GameOfLife.s
 |             |        |                                                        |
 | TextureRect |        | The Texture is set to that of the viewport             |
 
-This means we can then render the ~Viewport~ independantly from the ~TextureRect~. We can also apply transformations to the ~TextureRect~ using a [[./jazzy.shader][separate shader]].
-
-In this demo I added a separate second viewport & sprite to show that multiple render steps can be accomplished within a single frame. (Here I added a persistence effect).
+This means we can then render the ~Viewport~ independantly from the ~TextureRect~. We can also apply transformations to the ~TextureRect~ using a [[./jazzy.shader][separate shader]]. If we were to recreate the ~Viewport/Renderer~ format we could also bypass the clear buffer effect and have some doubly persistent state operations. (one for each viewport)
 
 ** On the use of sprites
 
 This was bugging me for a long time as I had many weird rendering errors. My problem? I was using a ~TextureRect~ instead of a ~Sprite~. Stick a sprite as a direct child of the viewport & set the scale to ~Vector2(2, 2)~, everything working after that.
+
+** Caveats
+
+Looks like the double Viewport method doesn't work well with HTML exports.
