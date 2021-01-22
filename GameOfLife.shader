@@ -26,7 +26,7 @@ vec4 getColor(vec4 cc, int count) {
 
   // When cell is alive & has either 2 or 3 neighbours
   // it will survive until the next iteration
-  if (cc.x > 0. && (count == 2 || count == 3)) {
+  if (cc.r > 0. && (count == 2 || count == 3)) {
     return vec4(1.0, 1.0, 1.0, 1.0);
   }
 
@@ -57,7 +57,7 @@ int ca_count(in sampler2D tex, vec2 uv, vec2 pixel_size) {
       modifier = min(1., abs(x) + abs(y));
 
       // Add any neighbours x value (we could also use y or z)
-      neighbours += texture(tex, uv + vec2(x, y) * pixel_size).x * modifier;
+      neighbours += texture(tex, uv + vec2(x, y) * pixel_size).r * modifier;
     }
   }
 
@@ -72,20 +72,20 @@ void fragment() {
   vec2 sz = SCREEN_PIXEL_SIZE;
 
   // How many alive cells do we have around the current cell?
-  int count = ca_count(SCREEN_TEXTURE, uv, sz);
+  int count = ca_count(TEXTURE, uv, sz);
 
   // How far away from the mouse is the current position
-  vec2 distance_to_mouse = uv - mouse_position * SCREEN_PIXEL_SIZE; 
+  vec2 distance_to_mouse = (uv / sz) - mouse_position; 
   
   // Mouse input drawing
-  if (mouse_pressed && length(distance_to_mouse) < 0.02) {
+  if (mouse_pressed && length(distance_to_mouse) < 20.) {
     // Apply some random spread to the mouse circle
     // gives us a nicer starting draw cycle
     float col = rand(distance_to_mouse * uv);
-    COLOR = vec4(col, col, col, 1.0);
+    COLOR = vec4(col, col, col, UV.y > 0.5 ? 1.0 : 0.0);
   }
 
   else
     // The meat of Game of Life is found here
-    COLOR = getColor(texture(SCREEN_TEXTURE, uv), count);
+    COLOR = getColor(texture(TEXTURE, uv), count);
 }
