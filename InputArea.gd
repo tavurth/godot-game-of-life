@@ -1,6 +1,9 @@
 extends TextureRect
 
-onready var Renderer = $"../Viewport/Renderer"
+# We'll give input to the first renderer
+# Then the CA (Cellular Automata) will ping-pong
+# back and forth between the two viewports
+onready var Renderer = $"/root/GameOfLife/Viewport/Renderer"
 
 func _ready():
 	pass

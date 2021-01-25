@@ -1,25 +1,29 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Viewport.gd" type="Script" id=1]
+[ext_resource path="res://GameOfLife.gd" type="Script" id=1]
 [ext_resource path="res://InputArea.gd" type="Script" id=2]
 [ext_resource path="res://FPS.gd" type="Script" id=3]
 [ext_resource path="res://GameOfLife.tres" type="Material" id=4]
 [ext_resource path="res://Renderer.gd" type="Script" id=5]
 [ext_resource path="res://Renderer2.gd" type="Script" id=6]
+[ext_resource path="res://jazzy.tres" type="Material" id=7]
 
-[sub_resource type="ViewportTexture" id=3]
+[sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport2")
 
 [node name="GameOfLife" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 1024, 512 )
-script = ExtResource( 1 )
+size = Vector2( 1024, 600 )
+transparent_bg = true
+render_target_clear_mode = 2
+render_target_update_mode = 0
 
 [node name="Renderer" type="Sprite" parent="Viewport"]
 material = ExtResource( 4 )
@@ -27,7 +31,10 @@ scale = Vector2( 2, 2 )
 script = ExtResource( 5 )
 
 [node name="Viewport2" type="Viewport" parent="."]
-size = Vector2( 1024, 512 )
+size = Vector2( 1024, 600 )
+transparent_bg = true
+render_target_clear_mode = 2
+render_target_update_mode = 0
 
 [node name="Renderer" type="Sprite" parent="Viewport2"]
 material = ExtResource( 4 )
@@ -35,16 +42,19 @@ scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 
 [node name="FinalDisplay" type="TextureRect" parent="."]
+material = ExtResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 3 )
+margin_right = 984.0
+margin_bottom = 560.0
+texture = SubResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="InterfaceContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 20
@@ -55,7 +65,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InterfaceContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
@@ -64,14 +74,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="InterfaceContainer/VBoxContainer"]
 margin_right = 984.0
 margin_bottom = 14.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="InterfaceContainer/VBoxContainer/HBoxContainer"]
 margin_right = 116.0
 margin_bottom = 14.0
 size_flags_horizontal = 2
@@ -85,7 +95,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="FPS" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="FPS" type="Label" parent="InterfaceContainer/VBoxContainer/HBoxContainer"]
 margin_left = 930.0
 margin_right = 984.0
 margin_bottom = 14.0

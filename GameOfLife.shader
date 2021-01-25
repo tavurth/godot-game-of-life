@@ -27,9 +27,11 @@ float getCellContent(vec4 cc) {
  * give me the next color for my current cell
  */
 vec4 getColor(vec4 cc, int count, float time) {
+  float wasCellAlive = getCellContent(cc); 
+  
   // When cell is alive & has either 2 or 3 neighbours
   // it will survive until the next iteration
-  if (getCellContent(cc) > 0. && (count == 2 || count == 3)) {
+  if (wasCellAlive > 0. && (count == 2 || count == 3)) {
     return cc;
   }
 
@@ -40,7 +42,7 @@ vec4 getColor(vec4 cc, int count, float time) {
   }
 
   // For all other cases the cells are dead
-  return vec4(0.0, 0.0, 0.0, 1.0) ;
+  return vec4(0.0, 0.0, 0.0, 1.0);
 }
 
 /**
