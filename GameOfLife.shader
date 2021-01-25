@@ -84,7 +84,11 @@ void fragment() {
   if (mouse_pressed && length(distance_to_mouse) < 20.) {
     // Apply some random spread to the mouse circle
     // gives us a nicer starting draw cycle
-    float col = rand(distance_to_mouse * uv);
+    float col = rand(distance_to_mouse * uv * 2.);
+
+    // Turn on pixels if value is > .5
+    col = smoothstep(0.5, 0.51, col);
+    
     COLOR = vec4(col, col, col, 1.0);
   }
 

@@ -1,6 +1,6 @@
 extends TextureRect
 
-onready var Renderer = $"../GameOfLife/Renderer"
+onready var Renderer = $"../Viewport/Renderer"
 
 func _ready():
 	pass
