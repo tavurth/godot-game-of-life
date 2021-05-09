@@ -22,9 +22,9 @@ If you would like to try out different rules, you can check the [[./GameOfLife.s
 
 |-------------+--------+------------------------------------------------------|
 | Viewport    |        |                                                      |
-| \-------->  | Sprite | The sprite has it's texture set to that of Viewport2 |
+| .add_child  | Sprite | The sprite has it's texture set to that of Viewport2 |
 | Viewport2   |        |                                                      |
-| \-------->  | Sprite | The sprite has it's texture set to that of Viewport  |
+| .add_child  | Sprite | The sprite has it's texture set to that of Viewport  |
 |             |        |                                                      |
 | TextureRect |        | The Texture is set to that of Viewport2              |
 
