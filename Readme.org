@@ -20,13 +20,13 @@ If you would like to try out different rules, you can check the [[./GameOfLife.s
 
 ** How it works
 
-|-------------+--------+------------------------------------------------------|
-| Viewport    |        |                                                      |
-| .add_child  | Sprite | The sprite has it's texture set to that of Viewport2 |
-| Viewport2   |        |                                                      |
-| .add_child  | Sprite | The sprite has it's texture set to that of Viewport  |
-|             |        |                                                      |
-| TextureRect |        | The Texture is set to that of Viewport2              |
+|--------------+--------+------------------------------------------------------|
+| Viewport     |        |                                                      |
+| .add_child -> | Sprite | The sprite has it's texture set to that of Viewport2 |
+| Viewport2    |        |                                                      |
+| .add_child -> | Sprite | The sprite has it's texture set to that of Viewport  |
+|              |        |                                                      |
+| TextureRect  |        | The Texture is set to that of Viewport2              |
 
 This means we can then render the ~Viewport~ independently from the ~TextureRect~. We can also apply transformations to the ~TextureRect~ using a [[./jazzy.shader][separate shader]]. If we were to recreate the ~Viewport/Renderer~ format we could also bypass the clear buffer effect and have some doubly persistent state operations. (one for each viewport)
 
