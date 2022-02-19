@@ -94,3 +94,5 @@ This means we can then render the `Viewport` independently from the `TextureRect
 ## On the use of sprites
 
 This was bugging me for a long time as I had many weird rendering errors. My problem? I was using a `TextureRect` instead of a `Sprite`. Stick a sprite as a direct child of the viewport & set the scale to `Vector2(2, 2)`, everything working after that.
+
+<a href="https://www.buymeacoffee.com/tavurth" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
